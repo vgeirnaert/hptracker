@@ -1,22 +1,41 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <!-- This site is responsive. Use full screen width. -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Create title for browser tabs & Favorites -->
-    <title>Hitpoint Tracker</title>
-    <meta name="description" content="TTRPG Hitpoint Tracker">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
-    <style type="text/css">
-      body {
-        background-color: #000000;
-      }
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="alfred.js"></script>
-  </head>
-  <body>
-  </body>
-</html>  
+<!doctype	html>
+<html	lang="en">
+	<head>
+		<meta	charset="utf-8">
+		<!--	This	site	is	responsive.	Use	full	screen	width.	-->
+		<meta	name="viewport"	content="width=device-width,	initial-scale=1.0">
+		<!--	Create	title	for	browser	tabs	&	Favorites	-->
+		<title>Hitpoint	Tracker</title>
+		<meta	name="description"	content="TTRPG	Hitpoint	Tracker">
+		<link	rel="stylesheet"	href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+		<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+		<link	rel="stylesheet"	href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+		<style	type="text/css">
+			.divider-vert[data-content]::after, .divider[data-content]::after {
+					background: #303742;
+					color: #bcc3ce;
+			}
+
+			.top-col {
+				padding-top: 0.5em;
+			}
+		</style>
+		<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script	src="hptracker.js"></script>
+	</head>
+	<body	class="bg-dark">
+		<div class="container">
+			<div class="columns">
+				<div class="column col-1 top-col">
+					<button class="btn s-rounded" id="newButton"><i class="icon icon-plus"></i></button>
+					<button class="btn s-rounded" id="refreshButton"><i class="icon icon icon-refresh"></i></button>
+				</div>
+				<div class="column col-11 top-col">
+					<h3>Hitpoints</h3> 
+				</div>
+			</div>
+			<div class="columns" id="countersContainer">
+			</div>			
+		</div>
+	</body>		
+</html>	
