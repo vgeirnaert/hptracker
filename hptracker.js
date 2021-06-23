@@ -52,7 +52,7 @@ function setEvents(counter) {
 
 	counter.find('input').on('focusout', function() {
 		const oldValue = parseInt($(this).data('oldValue'));
-		const modifyValue = parseInt($(this).val());
+		const modifyValue = parseInt($(this).val() || 0);
 		
 		$(this).data('oldValue', 0);
 		$(this).val(oldValue + modifyValue);
