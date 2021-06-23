@@ -38,7 +38,7 @@ function appendCounter(counter) {
 
 function setEvents(counter) {
 	counter.find('input').on('focusin', function() {
-		const oldValue = $(this).val();
+		const oldValue = $(this).val() || 0;
 		$(this).data('oldValue', oldValue);
 		$(this).val('');
 	});
