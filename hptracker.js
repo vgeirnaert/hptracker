@@ -16,6 +16,7 @@ $(document).ready(function() {
 						<input class="form-input" type="number" value="${maxHp}">
 					</div>
 				</form>
+				<progress class="progress" value="100" max="100"></progress>
 				<button class="btn js-duplicate-button">Duplicate</button> <button class="btn btn-link text-warning float-right js-remove-button">Remove</button>
 			</div>`;
 
@@ -53,9 +54,16 @@ function setEvents(counter) {
 	counter.find('input').on('focusout', function() {
 		const oldValue = parseInt($(this).data('oldValue'));
 		const modifyValue = parseInt($(this).val());
+		const newValue = isNaN(oldValue) ? modifyValue : oldValue + modifyValue;
 		
 		$(this).data('oldValue', 0);
-		$(this).val(oldValue + modifyValue);
+		$(this).val(newValue);
+
+		$(this).closest('.counterContainer').find('.progress').attr('value', newValue);
+
+		if(isNaN(oldValue)) {
+			$(this).closest('.counterContainer').find('.progress').attr('max', newValue);
+		}
 	});
 
 	counter.find('.js-remove-button').on('click', function() {
