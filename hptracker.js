@@ -16,7 +16,7 @@ $(document).ready(function() {
 						<input class="form-input" type="number" value="${maxHp}">
 					</div>
 				</form>
-				<progress class="progress" value="100" max="100"></progress>
+				<progress class="progress" value="${maxHp}" max="${maxHp}"></progress>
 				<button class="btn js-duplicate-button">Duplicate</button> <button class="btn btn-link text-warning float-right js-remove-button">Remove</button>
 			</div>`;
 
@@ -39,7 +39,7 @@ function appendCounter(counter) {
 
 function setEvents(counter) {
 	counter.find('input').on('focusin', function() {
-		const oldValue = $(this).val();
+		const oldValue = $(this).val() || 0;
 		$(this).data('oldValue', oldValue);
 		$(this).val('');
 	});
@@ -53,7 +53,7 @@ function setEvents(counter) {
 
 	counter.find('input').on('focusout', function() {
 		const oldValue = parseInt($(this).data('oldValue'));
-		const modifyValue = parseInt($(this).val());
+		const modifyValue = parseInt($(this).val() || 0);
 		const newValue = isNaN(oldValue) ? modifyValue : oldValue + modifyValue;
 		
 		$(this).data('oldValue', 0);
@@ -61,7 +61,7 @@ function setEvents(counter) {
 
 		$(this).closest('.counterContainer').find('.progress').attr('value', newValue);
 
-		if(isNaN(oldValue)) {
+		if(isNaN(oldValue) || oldValue === 0) {
 			$(this).closest('.counterContainer').find('.progress').attr('max', newValue);
 		}
 	});
