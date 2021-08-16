@@ -1,5 +1,10 @@
 let index = 1;
 
+window.addEventListener('beforeunload', function(event) {
+	event.preventDefault();
+	return event.returnValue = 'Are you sure you wish to leave? All trackers will be lost.';
+});
+
 $(document).ready(function() {
 	$('#refreshButton').on('click', function() {
 		index = 1;
