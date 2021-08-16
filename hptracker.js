@@ -22,7 +22,10 @@ $(document).ready(function() {
 					</div>
 				</form>
 				<progress class="progress" value="${maxHp}" max="${maxHp}"></progress>
-				<button class="btn js-duplicate-button">Duplicate</button> <button class="btn btn-link text-warning float-right js-remove-button">Remove</button>
+				<button class="btn js-duplicate-button">Duplicate</button> <button class="btn btn-primary js-history-button">History</button> <button class="btn btn-link text-warning float-right js-remove-button">Remove</button>
+				<div class="history hidden">
+					created with ${maxHp} hp<br>
+				</div>				
 			</div>`;
 
 		let newCounter = $(newCounterHtml);
@@ -66,9 +69,11 @@ function setEvents(counter) {
 
 		$(this).closest('.counterContainer').find('.progress').attr('value', newValue);
 
-		if(isNaN(oldValue) || oldValue === 0) {
+		if(isNaN(oldValue) || oldValue === 0 || newValue > oldValue) {
 			$(this).closest('.counterContainer').find('.progress').attr('max', newValue);
 		}
+
+		$(this).closest('.counterContainer').find('.history').prepend('change: ' + (modifyValue > 0 ? '+' : '') + modifyValue + ', total: ' + newValue + '<br>');
 	});
 
 	counter.find('.js-remove-button').on('click', function() {
@@ -79,5 +84,10 @@ function setEvents(counter) {
 		let clone = $(this).closest('.counterContainer').clone();
 		setEvents(clone);
 		appendCounter(clone);
+	});
+
+	counter.find('.js-history-button').on('click', function() {
+		let history = $(this).closest('.counterContainer').find('.history');
+		history.toggleClass('hidden');
 	});
 }
